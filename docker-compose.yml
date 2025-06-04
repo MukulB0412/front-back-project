@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "3000:80"  # 3000 on host → nginx (80) in container
+    depends_on:
+      - backend
+    networks:
+      - fullstack-net
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports:
+      - "8000:8000"
+    networks:
+      - fullstack-net
+
+networks:
+  fullstack-net:

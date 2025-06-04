@@ -1,0 +1,27 @@
+# -------- Build Stage --------
+FROM node:18-alpine AS builder
+
+# Set working directory
+WORKDIR /app
+
+# Copy and install dependencies
+COPY frontend/package*.json ./
+RUN npm install
+
+# Copy rest of the frontend source code
+COPY frontend/ ./
+
+# Build the frontend for production
+RUN npm run build
+
+
+# -------- Serve Stage --------
+FROM nginx:alpine AS runner
+
+# Copy the built assets from the builder stage to nginx html dir
+COPY --from=builder /app/dist /usr/share/nginx/html
+
+# Expose port 80
+EXPOSE 80
+
+# nginx runs by default, no CMD needed
