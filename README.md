@@ -153,13 +153,3 @@ jobs:
 - **Cloud:** AWS EC2 / DigitalOcean Droplet
 
 ---
-
-## 🙌 Author
-
-Made with ❤️ by [@mukul0412](https://hub.docker.com/u/mukul0412)
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
